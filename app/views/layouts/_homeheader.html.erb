@@ -1,0 +1,151 @@
+<div class="header-section">
+
+	<div class="header-signup">
+		<div id="sitemenu-icon" class="open active">
+	<span class="line1"></span>
+	<span class="line3"></span>
+</div>
+
+		<%= image_tag 'capsulely-logo.png', :class => "headerimage2" %>	
+		<h2>Get Capsulely Monthly Packages</h2>
+		<p>Limited Supply Available</p>
+		<div class="signupbutton">Hook Me Up</div>
+		<div class="nothanks">I'm Good</div>
+
+	</div>
+
+
+	<ul class="header-ul">
+		<%= link_to root_path do %>
+		<li class="nav0"><%= image_tag 'capsulely-logo3.png', :class => "headerimage" %></li><% end %>
+		<%= link_to pages_tees_path do %>
+		<li class="nav1" id="teebutton">Tees</li>
+		<% end %>
+		<%= link_to pages_hats_path do %>
+		<li class="nav2" id="hatbutton">Hats</li>
+		<% end %>
+		<%= link_to pages_jackets_path do %>
+		<li class="nav3" id="jacketbutton">Jackets</li>
+		<% end %>
+		<%= link_to pages_accessories_path do %>
+		<li class="nav4" id="accessorybutton">Accessories</li>
+		<% end %>
+		<li class="nav5"><div id="openbutton" class="rec-overall"><div class="large-rec"></div><div class="small-rec"></div></div></li>
+	</ul>
+
+</div>
+
+<div class="overlay nodisplay"></div>
+
+	<div class="rightmenu">
+	  <ul>
+	  	<% if user_signed_in? %>
+	  	<li>
+		    
+		    <%= link_to profile_url(:id => current_user.username) do %>
+		    	<span class="menu-li">Digital Capsule</span>
+		    <% end %>
+		    
+		</li>
+		<% end %>
+	  </ul>
+
+	  <ul>
+	  	<%= link_to pages_tees_path do %>
+	  	<li>
+			Tees
+		</li>
+		<% end %>
+		<%= link_to pages_hats_path do %>
+	  	<li>
+			Hats
+		</li>
+		<% end %>
+		<%= link_to pages_jackets_path do %>
+	  	<li>
+			Jackets
+		</li>
+		<% end %>
+		<%= link_to pages_accessories_path do %>
+	  	<li>
+			Accesories
+		</li>
+		<% end %>
+	  </ul>
+
+	  <ul>
+	  	<% if user_signed_in? %>
+	    <li>
+	      <%= link_to edit_user_registration_path do %>
+	      <span class="menu-li">Account</span>
+	      <% end %>
+
+	    </li>
+	    <% else %>
+	    <li>
+	      <%= link_to new_user_session_path do %>
+	      <span class="menu-li">Sign Up / Sign In</span>
+	      <% end %>
+	    </li>
+	    <% end %>
+
+	    <% if user_signed_in? %>
+	    <li>
+	      <%= link_to destroy_user_session_path, :method => :delete do %>
+	      <span class="menu-li">Sign out</span>
+	      <% end %>
+	    </li>
+	    <% end %>
+	  </ul>
+		<div class="ccevanslogo">
+			<%= link_to 'http://ccevans.com', :target => '_blank' do %>
+			<%= image_tag 'itsaspaceship.png', :class => "headerimage" %>
+			<% end %>
+		</div>
+	</div>
+
+<script>
+	$('#openbutton').click(function(){
+		$('.rightmenu').addClass('revealed');
+		$('.overlay').removeClass('nodisplay');
+		$('body').addClass("noscroll");
+	});
+	$('.overlay').click(function(){
+		$('.rightmenu').removeClass('revealed');
+		$('.overlay').addClass('nodisplay');
+		$('body').removeClass("noscroll");
+		$('.signup-popup').addClass("nodisplay");
+		$('.social-popup').addClass("nodisplay");
+	});
+	$("#sitemenu-icon").click(function(){
+		$(".header-signup").addClass("nodisplay");
+		$("#sitemenu-icon").removeClass("open");
+		$("#sitemenu-icon").removeClass("active");
+		$('body').removeClass("noscroll");
+	});
+
+ 	$('#teebutton').click(function(){
+		$('.Tee').removeClass('nodisplay');
+		$('.Jacket').addClass('nodisplay');
+		$('.Accessory').addClass('nodisplay');
+		$('.Hat').addClass('nodisplay');
+	});
+ 	$('#hatbutton').click(function(){
+		$('.Tee').addClass('nodisplay');
+		$('.Jacket').addClass('nodisplay');
+		$('.Accessory').addClass('nodisplay');
+		$('.Hat').removeClass('nodisplay');
+	});
+ 	$('#jacketbutton').click(function(){
+		$('.Tee').addClass('nodisplay');
+		$('.Jacket').removeClass('nodisplay');
+		$('.Accessory').addClass('nodisplay');
+		$('.Hat').addClass('nodisplay');
+	});
+ 	$('#accessorybutton').click(function(){
+		$('.Tee').addClass('nodisplay');
+		$('.Jacket').addClass('nodisplay');
+		$('.Accessory').removeClass('nodisplay');
+		$('.Hat').addClass('nodisplay');
+	});
+</script>

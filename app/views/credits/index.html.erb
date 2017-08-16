@@ -1,0 +1,8 @@
+  <div class='col-sm-6'>
+    <h4>Credits</h4>
+    <% @credits.each do |credit| %>
+      <div>Credit <%= credit.created_at.strftime("%B %-d, %Y") %></div>
+      <div>Available: <%= credit.creditactive %></div>
+    
+    <% end %>
+  </div>

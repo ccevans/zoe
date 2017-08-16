@@ -1,0 +1,21 @@
+<div class="postsection">
+	<% if user_signed_in? %>
+	<% if current_user.credits.where(creditactive: true).count > 1 %>
+	<div class="creditalert">
+		You have <%= current_user.credits.where(creditactive: true).count %> credits available to use.  Just hit "Use Credit" when placing order.
+	</div>
+
+	<% elsif current_user.credits.where(creditactive: true).count > 0 %>
+	<div class="creditalert">
+		You have <%= current_user.credits.where(creditactive: true).count %> credit available to use.  Just hit "Use Credit" when placing order.
+	</div>
+	<% end %>
+	<% end %>
+<% if @posts.any? %>
+
+<ul>
+	<%= render @posts %>
+</ul>
+
+<% end %>
+</div>

@@ -1,0 +1,120 @@
+body {background-color: rgba(255,255,243,1);}
+.postsection {float: left; width: 100%; margin: 0; padding: 0; background-color: rgba(255,255,255,1);}
+.postsection ul {float: left; list-style-type: none; padding: 0; margin: 0; width: 100%;}
+.postsection ul li.singlepost {float: left; width: 33%;}
+.postsection h1 {color: #566270;}
+.postsection p.branddesc {float: left; width: 80%; margin: 5px 10%;}
+.postshowsection {float: left; width: 100%; margin: 0; padding: 0; background-color: rgba(255,255,243,1);}
+.postbox {position: relative; float: left; width: 100%; padding: 0; margin: 15px 0%; border: 0px solid #e0e3da;}
+.imagecircle {position: relative; float: left; width: 100%; margin: 0; padding: 0; }
+.imagecircle img {float: left; width: 100%; margin: 0; padding: 0;}
+.postinfo {cursor: pointer; position: absolute; width: 100%; height: 60%; padding: 5% 0 0 0; text-align: center; background-color: rgba(86, 98, 112, .9);
+ 	transition: all 300ms ease 0s;  
+    -webkit-transition: all 300ms ease 0s;  
+    -moz-transition: all 300ms ease 0s;  
+    -o-transition: all 300ms ease 0s;  
+    }
+.postinfo h1 {float: left; width: 100%; color: #fff; text-transform: uppercase; margin: 5px 0; font-size: 24px;}
+.postinfo h2 {float: left; width: 100%; color: #e0e3da; margin: 5px 0; font-size: 18px;}
+
+.linkbutton {float: left; margin: 0; width: 40%; margin: 0 0 0 0; height: 100px; background-color: rgba(165,147,224,0);}
+.likebutton {float: left; margin: 0; width: 34%; margin: 0; height: 100px; background-color: rgba(174,158,226,0);}
+.unlikebutton {float: left; margin: 0; width: 34%; margin: 0; height: 100px; background-color: rgba(174,158,226,0);}
+.savebutton {float: left; margin: 0; width: 26%; margin: 0 0 0 0; height: 100px; background-color: rgba(183,169,228,0);}
+.unsavebutton {float: left; margin: 0; width: 26%; margin: 0 0 0 0; height: 100px; background-color: rgba(183,169,228,0);}
+.postbuttons {background-color: rgba(86, 98, 112, .9); position: absolute; top: 60%; left: 0; height: 40%; width: 100%; padding: 0; margin: 0px auto;}
+.allbutton {cursor: pointer; color: #fff; text-align: center; padding: 20px 0;}
+.allbutton i {font-size: 40px;}
+.allbutton p {margin: 2px 0;}
+.allbutton:hover {color: #a593e0; background: rgba(86, 98, 112, 1);}
+
+.signup-popup {position: fixed; top: 0px; z-index: 6001; border-radius: 0px; width: 60%; margin: 20%; padding: 10px 15px; background-color: #fffff3; color: #566270; min-height: 200px; height: auto; box-shadow: 1px 1px 100px #000;}
+.signup-popup .btn {background-color: #000; color: #fff; float: right; margin: 15px;}
+.signup-popup .btn:hover {background-color: rgba(165,147,224,1); color: #fff; float: right; margin: 15px;}
+.signupbox {float: left;}
+.signup-popup h1 {color: #a593e0; font-size: 24px; line-height: 24px; margin: 10px 5px; font-weight: 700; font-family: "proxima-nova", sans-serif;}
+
+.signup-popup2 {position: fixed; top: 0px; z-index: 6001; border-radius: 0px; width: 60%; margin: 20%; padding: 10px 15px; background-color: #fffff3; color: #566270; min-height: 200px; height: auto; box-shadow: 1px 1px 100px #000;}
+.signup-popup2 .btn {background-color: #000; color: #fff; float: right; margin: 15px;}
+.signup-popup2 .btn:hover {background-color: rgba(165,147,224,1); color: #fff; float: right; margin: 15px;}
+.signupbox {float: left;}
+.signup-popup2 h1 {color: #a593e0; font-size: 24px; line-height: 24px; margin: 10px 5px; font-weight: 700; font-family: "proxima-nova", sans-serif;}
+
+
+.social-popup {position: fixed; top: 20%; z-index: 6001; border-radius: 0px; width: 50%; margin: 0 25%; padding: 10px 15px; background-color: #fffff3; color: #000; height: 150px; height: auto; box-shadow: 1px 1px 100px #000;}
+.social-popup .btn {background-color: #000; color: #fff; float: right; margin: 15px;}
+.social-popup .btn:hover {background-color: rgba(165,147,224,1); color: #fff; float: right; margin: 15px;}
+
+.closepopup i {cursor: pointer;}
+
+.social-popup2 {position: fixed; top: 20%; z-index: 6001; border-radius: 0px; width: 50%; margin: 0 25%; padding: 10px 15px; background-color: #fffff3; color: #000; height: 150px; height: auto; box-shadow: 1px 1px 100px #000;}
+.social-popup2 .btn {background-color: #000; color: #fff; float: right; margin: 15px;}
+.social-popup2 .btn:hover {background-color: rgba(165,147,224,1); color: #fff; float: right; margin: 15px;}
+
+.closepopup2 i {cursor: pointer;}
+
+.postexpand {float: left; width: 100%; margin: 0; padding: 0;}
+.postexpand img {float: left; width: 100%; margin: 0; padding: 0;}
+
+.postbuttons2 {float: left; width: 100%; padding: 0; margin: 0px auto;}
+.postexpand .postexpandtitle h1 {font-size: 24px; line-height: 24px; margin: 10px 5px; font-weight: 700;}
+.postexpand .postbuttons2 .allbutton {color: #a593e0;}
+.postexpandtitle {float: left; text-align: center; width: 100%; margin: 0; padding: 10px 5px; background-color: rgba(255, 255, 243, 1); color: #566270;}
+.productorder-form {float: left; width: 100%; margin: 25px 0;}
+.productorder-form .panel.panel-default {border: none; box-shadow: none;}
+.productorder-form .panel.panel-default .panel-heading {border: none; box-shadow: none; background-color: rgba(255, 255, 243, 1); color: #566270; font-family: "proxima-nova", sans-serif; font-weight: 700; text-align: left; text-transform: uppercase; font-size: 24px;}
+.productorder-form .panel.panel-default .panel-heading .panel-title {color: #566270; font-family: "proxima-nova", sans-serif; font-weight: 700; text-align: left; text-transform: uppercase; font-size: 24px;}
+
+.productorder-form .panel.panel-default .current-address {font-size: 18px; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}
+.productorder-form .panel.panel-default .current-address a.use-different-address {color: #a593e0}
+.productorder-form .panel.panel-default .card-on-file {font-size: 18px; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}
+.productorder-form .panel.panel-default .card-on-file a.use-different-card {color: #a593e0}
+
+.productorder-form .form-group button {float: left; background-color: #a593e0; color: #fff; border: none; margin: 10px 25px; padding: 5px 10px; font-size: 18px; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}
+.postexpand .carousel.slide a.left.carousel-control {background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 0%) !important;}
+.postexpand .carousel.slide a.right.carousel-control {background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 0%) !important;}
+
+.hiddenform .postexpand .productorder-form a.toplink {float: left; clear: both; background-color: #a593e0; color: #fff; border: none; margin: 15px 25px; padding: 5px 10px; font-size: 18px; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}
+.postexpand .productorder-form .panel-group {float: left; width: 100%;}
+
+.postshowsection .postbox {width: 50%;}
+.postshowinfo {width: 50%; float: left; }
+
+.signup-popup a.toplink {float: left; background-color: #a593e0; color: #fff; border: none; margin: 15px 25px; padding: 5px 10px; font-size: 18px; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}
+.clickimage {cursor: pointer;}
+
+table.table.pricingtable {float: left; font-weight: 700; width: 70%; margin: 0 25% 0 5%; }
+table.table.pricingtable tbody tr td {border: none;}
+table.table.pricingtable tbody tr.totalrow {border: 1px solid #566270; background-color: #fffff3;}
+.card-fields input {font-weight: 700;}
+
+.smallfont {font-size: 12px; line-height: 12px;}
+
+.postexpand .productorder-form form hr {float: left;}
+
+.productorder-form .payment-errors {float: left;}
+
+@media screen and (min-width: 800px) and (max-width: 1200px){
+
+	.postsection ul li.singlepost {float: left; width: 33%;}
+
+}
+
+
+
+
+@media screen and (max-width: 800px){
+
+	.postsection ul li.singlepost {float: left; width: 33%;}
+	.postshowsection {float: left; width: 100%; margin: 0; padding: 0; background-color: rgba(255,255,243,1);}
+	.postexpand .postexpandtitle h1 {font-size: 18px; line-height: 18px; margin: 10px 5px;}
+	.allbutton i {font-size: 30px;}
+	}
+
+@media screen and (max-width: 640px){
+	.postbuttons {display: none;}
+	.postinfo {display: none;}
+	.smallfont {font-size: 8px; line-height: 8px;}
+
+	.signup-popup {position: fixed; top: 0px; z-index: 6001; border-radius: 0px; width: 90%; margin: 20% 5%; padding: 10px 15px; background-color: #fffff3; color: #566270; min-height: 200px; height: auto; box-shadow: 1px 1px 100px #000;}
+}

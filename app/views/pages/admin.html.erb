@@ -1,0 +1,94 @@
+<% if can? :manage, :all %>
+<div class="postsection">
+<% if @posts.any? %>
+
+<ul>
+	<% @posts.each do |post| %>
+<li>
+	<div class="postbox <%= post.id %>">
+
+		<div class="imagecircle <%= post.id %>">
+		<div class="postinfo nodisplay <%= post.id %>">
+			<h1><%= post.brand %></h1>
+			<h2><%= post.title %></h2>
+
+
+		</div>
+			<%= image_tag post.image.url(:medium) %>
+
+
+
+
+		</div>
+
+
+
+		<div class="postbuttons <%= post.id %>">
+
+		<% if post.link.present? %>
+
+		<%= link_to post.link, :target => "_blank" do %>
+			<div class="allbutton linkbutton <%= post.id %>">
+				<i class="fa fa-usd"></i>
+				<p>BUY / <%= post.price %></p>
+
+			</div>
+		<% end %>
+
+		<% else %>
+			<div class="allbutton linkbutton <%= post.id %>">
+				<i class="fa fa-usd"></i>
+				<p>COMING SOON / <%= post.price %></p>
+
+			</div>
+
+		<% end %>
+
+
+			<div class="allbutton likebutton <%= post.id %>">
+				<i class="fa fa-heart"></i>
+				<p>SHARE / <span class="likeup <%= post.id %>"><%= post.liked_by.count %></span></p>
+
+			</div>
+
+
+			<div class="allbutton savebutton <%= post.id %>">
+				<i class="fa fa-exclamation"></i>
+				<p>CAP / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
+
+			</div>
+
+
+					
+
+		</div>
+
+		<div>
+			<%= link_to 'Edit', edit_post_path(post) %>
+         	<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+         	<%= post.impressionist_count(:filter=>:session_hash) %>
+
+		</div>
+
+	</div>
+</li>
+
+<script>
+
+  $('.imagecircle' + '.<%= post.id %>').mouseover(function(){
+    $('.postinfo' + '.<%= post.id %>').removeClass("nodisplay");
+  });
+  $('.imagecircle' + '.<%= post.id %>').mouseleave(function(){
+    $('.postinfo' + '.<%= post.id %>').addClass("nodisplay");
+  });
+</script>
+
+
+
+	<% end %>
+</ul>
+
+<% end %>
+</div>
+
+<% end %>

@@ -1,0 +1,12 @@
+<div class="postsection">
+<h1><%= @brand.title %></h1> 
+<p class="branddesc"><%= @brand.description %></>
+
+<% if @posts.any? %>
+
+<ul>
+	<%= render @posts %>
+</ul>
+
+<% end %>
+</div>

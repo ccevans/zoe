@@ -1,0 +1,492 @@
+<div class="postshowsection">	
+<div class="postbox <%= @post.id %> <%= @post.category %>">
+
+		<div class="imagecircle <%= @post.id %>">
+		<div class="postinfo nodisplay <%= @post.id %>">
+			<h1><%= @post.brand %></h1>
+			<h2><%= @post.title %></h2>
+			<% if can? :manage, :all %><h2> <%= @post.quantity %></h2><% end %>
+			<% if can? :manage, :all %>
+			  <h2><%= link_to 'Edit', edit_post_path(@post) %> <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %></h2>
+            <% end %>
+			
+		</div>
+
+		<div class="postbuttons nodisplay <%= @post.id %>">
+
+			<% if @post.quantity > 0 %>
+			<%= link_to new_post_order_path(@post), remote: true , data: { no_turbolink: true } do %>
+				<div class="allbutton linkbutton <%= @post.id %>">
+					<i class="fa fa-usd"></i>
+					<% if current_user_subscribed? %>
+						<p>ORDER / <%= number_to_currency(@post.price.to_f -  @post.member_discount.to_f) %></p>
+					<% else %>
+						<p>ORDER / <%= number_to_currency(@post.price.to_f) %></p>
+					<% end %>
+
+				</div>
+			<% end %>
+
+			<% else %>
+				<div class="allbutton linkbutton <%= @post.id %>">
+					<i class="fa fa-usd"></i>
+					<% if current_user_subscribed? %>
+						<p>SOLD OUT / <%= number_to_currency(@post.price.to_f -  @post.member_discount.to_f) %></p>
+					<% else %>
+						<p>SOLD OUT / <%= number_to_currency(@post.price.to_f) %></p>
+					<% end %>
+
+				</div>
+
+			<% end %>
+
+			<% if user_signed_in? %>
+				<% if (@current_user.likes.include? @post) %>
+					
+					<div class="sharenow <%= @post.id %>">
+						<div class="allbutton likebutton <%= @post.id %>">
+							<i class="fa fa-heart"></i>
+							<p>SHARE / <span class="likeup <%= @post.id %>"><%= @post.liked_by.count %></span></p>
+
+						</div>
+					</div>
+
+					<% else %>
+
+					<%= link_to like_post_path(@post, type: "like"), class: ['likeit', @post.id], remote: true, data: { type: :json }, method: :put do %>
+					<div class="sharenow <%= @post.id %>">
+						<div class="allbutton likebutton <%= @post.id %>">
+							<i class="fa fa-heart"></i>
+							<p>SHARE / <span class="likeup <%= @post.id %>"><%= @post.liked_by.count %></span></p>
+
+						</div>
+					</div>
+					<% end %>
+
+				<% end %>	
+			<% else %>
+				<div class="sharenow <%= @post.id %>">
+					<div class="allbutton likebutton <%= @post.id %>">
+						<i class="fa fa-heart"></i>
+						<p>SHARE / <span class="likeup <%= @post.id %>"><%= @post.liked_by.count %></span></p>
+
+					</div>
+				</div>
+
+
+						
+			<% end %>
+
+			<% if user_signed_in? %>
+				<% if (@current_user.favorites.include? @post) %>
+					<%= link_to favorite_post_path(@post, type: "unfavorite"), class: ['unfavit', @post.id], remote: true, data: { type: :json }, method: :put do %>
+						<div class="allbutton unsavebutton <%= @post.id %>">
+							<i class="fa fa-exclamation"></i>
+							<p>UNCAP / <span class="favup <%= @post.id %>"><%= @post.favorited_by.count %></span></p>
+
+						</div>
+
+					<% end %>	
+					<%= link_to favorite_post_path(@post, type: "favorite"), class: ['favit', @post.id], remote: true, data: { type: :json }, method: :put do %>
+					<div class="allbutton savebutton nodisplay <%= @post.id %>">
+						<i class="fa fa-exclamation"></i>
+						<p>CAP / <span class="favup <%= @post.id %>"><%= @post.favorited_by.count %></span></p>
+
+					</div>
+					<% end %>	
+
+
+				<% else %>
+
+					<%= link_to favorite_post_path(@post, type: "favorite"), class: ['favit', @post.id], remote: true, data: { type: :json }, method: :put do %>
+					<div class="allbutton savebutton <%= @post.id %>">
+						<i class="fa fa-exclamation"></i>
+						<p>CAP / <span class="favup <%= @post.id %>"><%= @post.favorited_by.count %></span></p>
+
+					</div>
+					<% end %>	
+
+					<%= link_to favorite_post_path(@post, type: "unfavorite"), class: ['unfavit', @post.id], remote: true, data: { type: :json }, method: :put do %>
+						<div class="allbutton unsavebutton nodisplay <%= @post.id %>">
+							<i class="fa fa-exclamation"></i>
+							<p>UNCAP / <span class="favup <%= @post.id %>"><%= @post.favorited_by.count %></span></p>
+
+						</div>
+
+					<% end %>
+				<% end %>
+
+				<% else %>
+
+
+				<div class="signupnow <%= @post.id %>">
+					<div class="allbutton savebutton <%= @post.id %>">
+						<i class="fa fa-exclamation"></i>
+						<p>CAP / <span class="favup <%= @post.id %>"><%= @post.favorited_by.count %></span></p>
+
+					</div>
+				</div>
+
+
+						
+			<% end %>
+			</div>
+
+			<%= image_tag @post.image.url(:medium), class: ['clickimage', @post.id] %>
+
+ 
+
+
+		</div>
+
+
+
+
+
+	</div>
+
+	<div class="postshowinfo">
+
+
+	</div>
+
+<div class="social-popup nodisplay <%= @post.id %>">
+  <span class="closepopup <%= @post.id %>"><i class="fa fa-times"></i></span>
+
+<%= social_share_button_tag(@post.brand + " " + @post.title, :image => @post.image.url, :url => post_url(@post), :'data-image' => @post.image.url, :'data-url' => post_url(@post), :popup => "true", via: "capsulely") %>
+
+</div>
+
+<div class="social-popup2 nodisplay <%= @post.id %>">
+  <span class="closepopup2 <%= @post.id %>"><i class="fa fa-times"></i></span>
+
+<%= social_share_button_tag(@post.brand + " " + @post.title, :image => @post.image.url, :url => post_url(@post), :'data-image' => @post.image.url, :'data-url' => post_url(@post), :popup => "true", via: "capsulely") %>
+
+</div>
+<div class="signup-popup nodisplay <%= @post.id %>">
+  <span class="closepopup <%= @post.id %>"><i class="fa fa-times"></i></span>
+
+	  <h1>Join Capsulely</h1>
+	  
+	      <p>Create your account and save all the hats you like.  Make it easy to keep up with your wishlist.  Also join our monthly hat subscription where you get a hat delivered each month and discounts on hat purchases.</p>
+
+		<%= link_to "Sign In / Sign Up", new_user_session_path, class: "toplink" %>
+
+ 		<%= link_to "Subscribe To Capsulely To Get Discounts", new_subscription_path, data: { no_turbolink: true }, class: "toplink" %>
+
+</div>
+
+<div class="signup-popup2 nodisplay <%= @post.id %>">
+  <span class="closepopup2 <%= @post.id %>"><i class="fa fa-times"></i></span>
+
+	  <h1>Join Capsulely</h1>
+	  
+	      <p>Create your account and save all the hats you like.  Make it easy to keep up with your wishlist.  Also join our monthly hat subscription where you get a hat delivered each month and discounts on hat purchases.</p>
+
+		<%= link_to "Sign In / Sign Up", new_user_session_path, class: "toplink" %>
+
+ 		<%= link_to "Subscribe To Capsulely To Get Discounts", new_subscription_path, data: { no_turbolink: true }, class: "toplink" %>
+
+</div>
+
+	<div class="hiddenform <%= @post.id %>">
+		<div class="postexpand <%= @post.id %> nodisplay">
+
+			<div class="postexpandtitle">
+				<h1><%= @post.brand %>  <%= @post.title %></h1> 
+
+			</div>
+
+			<div id="carousel-example-generic-<%= @post.id %>" class="carousel slide <%= @post.id %>" data-ride="carousel">
+			  <!-- Indicators -->
+			  <% if @post.image2.present? %>
+			  <ol class="carousel-indicators <%= @post.id %> nodisplay">
+			    <li data-target="#carousel-example-generic-<%= @post.id %>" data-slide-to="0" class="active"></li>
+			    <li data-target="#carousel-example-generic-<%= @post.id %>" data-slide-to="1"></li>
+			    <% if @post.image3.present? %>
+			    <li data-target="#carousel-example-generic-<%= @post.id %>" data-slide-to="2"></li>
+			    <% end %>
+			  </ol>
+			  <% end %>
+
+			  <!-- Wrapper for slides -->
+			  <div class="carousel-inner" role="listbox">
+			    <div class="item active">
+			      <%= image_tag @post.image.url(:large) %>
+
+			    </div>
+
+			    <% if @post.image2.present? %>
+			    <div class="item">
+			      <%= image_tag @post.image2.url(:large) %>
+
+			    </div>
+			    <% end %>
+			    <% if @post.image3.present? %>
+			    <div class="item">
+			      <%= image_tag @post.image3.url(:large) %>
+
+			    </div>
+			    <% end %>
+			  </div>
+
+			  <% if @post.image2.present? %>
+			  <!-- Controls -->
+			  <a class="left carousel-control <%= @post.id %> nodisplay" href="#carousel-example-generic-<%= @post.id %>" role="button" data-slide="prev">
+			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="right carousel-control <%= @post.id %> nodisplay" href="#carousel-example-generic-<%= @post.id %>" role="button" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			  <% end %>
+			</div>
+			
+
+			<div class="postbuttons2 <%= @post.id %>">
+
+			<% if @post.quantity > 0 %>
+			<%= link_to new_post_order_path(@post), remote: true , data: { no_turbolink: true } do %>
+				<div class="allbutton linkbutton <%= @post.id %>">
+					<i class="fa fa-usd"></i>
+					
+					<% if current_user_subscribed? %>
+						<p>ORDER / <%= number_to_currency(@post.price.to_f -  @post.member_discount.to_f) %></p>
+					<% else %>
+						<p>ORDER / <%= number_to_currency(@post.price.to_f) %></p>
+					<% end %>
+
+				</div>
+			<% end %>
+
+			<% else %>
+				<div class="allbutton linkbutton <%= @post.id %>">
+					<i class="fa fa-usd"></i>
+					
+					<% if current_user_subscribed? %>
+						<p>SOLD OUT / <%= number_to_currency(@post.price.to_f -  @post.member_discount.to_f) %></p>
+					<% else %>
+						<p>SOLD OUT / <%= number_to_currency(@post.price.to_f) %></p>
+					<% end %>
+
+				</div>
+
+			<% end %>
+
+			<% if user_signed_in? %>
+				<% if (@current_user.likes.include? @post) %>
+					
+					<div class="sharenow2 <%= @post.id %>">
+						<div class="allbutton likebutton <%= @post.id %>">
+							<i class="fa fa-heart"></i>
+							<p>SHARE / <span class="likeup <%= @post.id %>"><%= @post.liked_by.count %></span></p>
+
+						</div>
+					</div>
+
+					<% else %>
+
+					<%= link_to like_post_path(@post, type: "like"), class: ['likeit', @post.id], remote: true, data: { type: :json }, method: :put do %>
+					<div class="sharenow2 <%= @post.id %>">
+						<div class="allbutton likebutton <%= @post.id %>">
+							<i class="fa fa-heart"></i>
+							<p>SHARE / <span class="likeup <%= @post.id %>"><%= @post.liked_by.count %></span></p>
+
+						</div>
+					</div>
+					<% end %>
+
+				<% end %>	
+			<% else %>
+				<div class="sharenow2 <%= @post.id %>">
+					<div class="allbutton likebutton <%= @post.id %>">
+						<i class="fa fa-heart"></i>
+						<p>SHARE / <span class="likeup <%= @post.id %>"><%= @post.liked_by.count %></span></p>
+
+					</div>
+				</div>
+
+
+						
+			<% end %>
+
+			<% if user_signed_in? %>
+				<% if (@current_user.favorites.include? @post) %>
+					<%= link_to favorite_post_path(@post, type: "unfavorite"), class: ['unfavit', @post.id], remote: true, data: { type: :json }, method: :put do %>
+						<div class="allbutton unsavebutton <%= @post.id %>">
+							<i class="fa fa-exclamation"></i>
+							<p>UNCAP / <span class="favup <%= @post.id %>"><%= @post.favorited_by.count %></span></p>
+
+						</div>
+
+					<% end %>	
+					<%= link_to favorite_post_path(@post, type: "favorite"), class: ['favit', @post.id], remote: true, data: { type: :json }, method: :put do %>
+					<div class="allbutton savebutton nodisplay <%= @post.id %>">
+						<i class="fa fa-exclamation"></i>
+						<p>CAP / <span class="favup <%= @post.id %>"><%= @post.favorited_by.count %></span></p>
+
+					</div>
+					<% end %>	
+
+
+				<% else %>
+
+					<%= link_to favorite_post_path(@post, type: "favorite"), class: ['favit', @post.id], remote: true, data: { type: :json }, method: :put do %>
+					<div class="allbutton savebutton <%= @post.id %>">
+						<i class="fa fa-exclamation"></i>
+						<p>CAP / <span class="favup <%= @post.id %>"><%= @post.favorited_by.count %></span></p>
+
+					</div>
+					<% end %>	
+
+					<%= link_to favorite_post_path(@post, type: "unfavorite"), class: ['unfavit', @post.id], remote: true, data: { type: :json }, method: :put do %>
+						<div class="allbutton unsavebutton nodisplay <%= @post.id %>">
+							<i class="fa fa-exclamation"></i>
+							<p>UNCAP / <span class="favup <%= @post.id %>"><%= @post.favorited_by.count %></span></p>
+
+						</div>
+
+					<% end %>
+				<% end %>
+
+				<% else %>
+
+
+				<div class="signupnow2 <%= @post.id %>">
+					<div class="allbutton savebutton <%= @post.id %>">
+						<i class="fa fa-exclamation"></i>
+						<p>CAP / <span class="favup <%= @post.id %>"><%= @post.favorited_by.count %></span></p>
+
+					</div>
+				</div>
+
+
+						
+			<% end %>
+			</div>
+				<% if user_signed_in? %>
+				<% if current_user.credits.where(creditactive: true).count > 1 %>
+				<div class="creditalert">
+					You have <%= current_user.credits.where(creditactive: true).count %> credits available to use.  Just hit "Use Credit" when placing order.
+				</div>
+
+				<% elsif current_user.credits.where(creditactive: true).count > 0 %>
+				<div class="creditalert">
+					You have <%= current_user.credits.where(creditactive: true).count %> credit available to use.  Just hit "Use Credit" when placing order.
+				</div>
+				<% end %>
+				<% end %>
+
+			<div class="productorder-form <%= @post.id %>"></div>
+
+		</div>
+	</div>
+
+	<div class="wrapperform <%= @post.id %> nodisplay"></div>
+
+<script>
+	$('.carousel').carousel({
+	  interval: false
+	})
+</script>
+
+<script>
+
+  $('.imagecircle' + '.<%= @post.id %>').mouseover(function(){
+    $('.postinfo' + '.<%= @post.id %>').removeClass("nodisplay");
+    $('.postbuttons' + '.<%= @post.id %>').removeClass("nodisplay");
+
+  });
+  $('.imagecircle' + '.<%= @post.id %>').mouseleave(function(){
+    $('.postinfo' + '.<%= @post.id %>').addClass("nodisplay");
+    $('.postbuttons' + '.<%= @post.id %>').addClass("nodisplay");
+  });
+  $('.carousel' + '.<%= @post.id %>').mouseover(function(){
+    $('.carousel-control' + '.<%= @post.id %>').removeClass("nodisplay");
+    $('.carousel-indicators' + '.<%= @post.id %>').removeClass("nodisplay");
+  });
+  $('.carousel' + '.<%= @post.id %>').mouseleave(function(){
+    $('.carousel-control' + '.<%= @post.id %>').addClass("nodisplay");
+    $('.carousel-indicators' + '.<%= @post.id %>').addClass("nodisplay");
+  });
+  $('.favit' + '.<%= @post.id %>').on('ajax:success', function (e, data, status, xhr) { 
+    console.log('byeyo');
+    $('.favup' + '.<%= @post.id %>').html(data.count);
+    $('.unsavebutton' + '.<%= @post.id %>').removeClass("nodisplay");
+    $('.savebutton' + '.<%= @post.id %>').addClass("nodisplay");
+  });
+  $('.unfavit' + '.<%= @post.id %>').on('ajax:success', function (e, data, status, xhr) { 
+    console.log('byeyo');
+    $('.favup' + '.<%= @post.id %>').html(data.count);
+    $('.unsavebutton' + '.<%= @post.id %>').addClass("nodisplay");
+    $('.savebutton' + '.<%= @post.id %>').removeClass("nodisplay");
+  });
+  $('.likeit' + '.<%= @post.id %>').on('ajax:success', function (e, data, status, xhr) { 
+    console.log('byeyo');
+    $('.likeup' + '.<%= @post.id %>').html(data.count);
+  });
+  $('.signupnow' + '.<%= @post.id %>').click(function(){
+    $('.signup-popup' + '.<%= @post.id %>').removeClass("nodisplay");
+    $('.overlay').removeClass('nodisplay');
+    $('body').addClass("noscroll");
+  });
+   $('.signupnow2' + '.<%= @post.id %>').click(function(){
+    $('.signup-popup2' + '.<%= @post.id %>').removeClass("nodisplay");
+    $('.overlay').removeClass('nodisplay');
+    $('body').addClass("noscroll");
+  });
+  $('.sharenow' + '.<%= @post.id %>').click(function(){
+    $('.social-popup' + '.<%= @post.id %>').removeClass("nodisplay");
+    $('.overlay').removeClass('nodisplay');
+    $('body').addClass("noscroll");
+  });
+  $('.closepopup' + '.<%= @post.id %>').click(function(){
+    $('.signup-popup' + '.<%= @post.id %>').addClass("nodisplay");
+    $('.social-popup' + '.<%= @post.id %>').addClass("nodisplay");
+    $('.overlay').addClass('nodisplay');
+    $('body').removeClass("noscroll");
+  });
+   $('.sharenow2' + '.<%= @post.id %>').click(function(){
+    $('.social-popup2' + '.<%= @post.id %>').removeClass("nodisplay");
+    $('.overlay').removeClass('nodisplay');
+    $('body').addClass("noscroll");
+  });
+  $('.closepopup2' + '.<%= @post.id %>').click(function(){
+    $('.signup-popup2' + '.<%= @post.id %>').addClass("nodisplay");
+    $('.social-popup2' + '.<%= @post.id %>').addClass("nodisplay");
+    $('.overlay').addClass('nodisplay');
+  });
+  $('.postinfo' + '.<%= @post.id %>').click(function(){
+    $('.postexpand' + '.<%= @post.id %>').removeClass("nodisplay");
+    $('.overlay').addClass('nodisplay');
+    $('body').addClass("noscroll");
+    $('.hiddenform' + '.<%= @post.id %>').addClass("active");
+    $('.wrapperform' + '.<%= @post.id %>').addClass("active");
+    $('.wrapperform' + '.<%= @post.id %>').removeClass("nodisplay");
+  });
+  $('.linkbutton' + '.<%= @post.id %>').click(function(){
+    $('.postexpand' + '.<%= @post.id %>').removeClass("nodisplay");
+    $('.overlay').addClass('nodisplay');
+    $('body').addClass("noscroll");
+    $('.hiddenform' + '.<%= @post.id %>').addClass("active");
+    $('.wrapperform' + '.<%= @post.id %>').addClass("active");
+    $('.wrapperform' + '.<%= @post.id %>').removeClass("nodisplay");
+  });
+  $('.clickimage' + '.<%= @post.id %>').click(function(){
+    $('.postexpand' + '.<%= @post.id %>').removeClass("nodisplay");
+    $('.overlay').addClass('nodisplay');
+    $('body').addClass("noscroll");
+    $('.hiddenform' + '.<%= @post.id %>').addClass("active");
+    $('.wrapperform' + '.<%= @post.id %>').addClass("active");
+    $('.wrapperform' + '.<%= @post.id %>').removeClass("nodisplay");
+  });
+  $('.wrapperform' + '.<%= @post.id %>').click(function(){
+    $('.postexpand' + '.<%= @post.id %>').addClass("nodisplay");
+    $('.overlay').addClass('nodisplay');
+    $('body').removeClass("noscroll");
+    $('.hiddenform' + '.<%= @post.id %>').removeClass("active");
+    $('.wrapperform' + '.<%= @post.id %>').removeClass("active");
+    $('.wrapperform' + '.<%= @post.id %>').addClass("nodisplay");
+  });
+</script>

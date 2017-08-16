@@ -1,0 +1,364 @@
+<div class="brand-heading">
+  <h1>Register Your Brand</h1>
+  <p>Register your brand with Capsulely today.  Our team will be in contact shortly.  If you already registered or just have questoins, you can email us at info@capsulely.com.</p>
+</div>
+
+<div class="brand-form-box">
+  <div class="panel-body">
+    <div class="panel panel-default">
+      <%= form_for( @brand, html: { multipart: true }, :authenticity_token => true, id: "account-form") do |f| %>
+        <% if @brand.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@brand.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+            <ul>
+            <% @brand.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Brand Information
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="form-group">
+                  <%= f.label :brandname, "Brand ID" %>
+                  <%= f.text_field :brandname, placeholder: "capsulely", class: "form-control" %>
+                  <%= f.label :title, "Brand Name" %>
+                  <%= f.text_field :title, placeholder: "Capsulely", class: "form-control" %>
+                  <%= f.label :description %>
+                  <%= f.text_area :description, placeholder: "Tell us about your brand and products.", class: "form-control" %>
+                  <%= f.label :email %>
+                  <%= f.text_field :email, placeholder: "info@capsulely.com", class: "form-control" %>
+                  <%= f.label :phone %>
+                  <%= f.text_field :phone, placeholder: "704-458-3043", class: "form-control" %>
+                  <%= f.label :website %>
+                  <%= f.text_field :website, placeholder: "https://www.capsulely.com", class: "form-control" %>
+                </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Address Information <span class="smallfont">(Click To Add)</span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+
+            <div class="form-group">
+
+              <%= f.label :street_address, "Street Address" %>
+              <%= f.text_field :street_address, class: "form-control" %>
+              <%= f.label :street_address_line2, "Apt, Suite, Etc" %>
+              <%= f.text_field :street_address_line2, class: "form-control" %>
+              <%= f.label :city %>
+              <%= f.text_field :city, class: "form-control" %>
+              <%= f.label :state %>
+              <%= f.select :state, options_for_select(us_states),{}, class: 'form-control' %>
+              <%= f.label :postal_code, "Zip Code" %>
+              <%= f.text_field :postal_code, class: "form-control" %>
+
+            </div>
+
+
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThree">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Personal Information <span class="smallfont">(Click To Add)</span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+
+            <div class="form-group">
+
+              <%= f.label :first_name %>
+              <%= f.text_field :first_name, class: "form-control" %>
+              <%= f.label :last_name %>
+              <%= f.text_field :last_name, class: "form-control" %>
+
+              <%= f.label :ssn_last_4, "Social Security # (last 4)" %>
+              <%= f.text_field :ssn_last_4, placeholder: "We use the last four digits to verify your identity.", class: "form-control", input_html: { maxlength: 4 } %>
+              <%= f.label :birth_day, "Date of Birth" %>
+
+              <div class="birthdaybox">
+                <%= f.text_field :birth_month, placeholder: "Month", class: "form-control birthday", input_html: { maxlength: 2 } %> <div class="birthday3">/</div>  <%= f.text_field :birth_day, placeholder: "Day", class: "form-control birthday", input_html: { maxlength: 2 } %><div class="birthday3">/</div> <%= f.text_field :birth_year, placeholder: "Year", class: "form-control birthday2", input_html: { maxlength: 4 } %>
+              </div>
+
+             
+
+            </div>
+
+
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingFour">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Payment Information <span class="smallfont">(Click To Add)</span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+
+                <div class="form-group">
+
+                  <p>Add your bank account or debt card where you would like to send payouts. Enter this information to have faster registration turn around. You will be able to update later, if not provided with initial registration.</p>
+                      <select id="selectoption" class="externaloption" onchange="displayAccount(this.value)">
+                        <option value="1">Bank Account</option>
+                        <option value="2" selected="selected">Debit Card</option>
+                      </select>
+
+                        <div id="bankaccountinfo" style="display:none;">
+                          <div class="form-row">
+                            <label>
+                              <span>Routing Number</span>
+                              <input type="text" size="20" class="routing-number" data-stripe="routingNumber"/>
+                            </label>
+                          </div>
+                          <div class="form-row">
+                            <label>
+                              <span>Account Number</span>
+                              <input type="text" size="20" class="account-number" data-stripe="accountNumber"/>
+                            </label>
+                          </div>
+                          <div class="form-row">
+                            <label>
+                              <span>Account Holder Name</span>
+                              <input type="text" size="20" class="account_number_holder" data-stripe="account_holder_name"/>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div id="debitcardinfo">
+                          <div class="form-row">
+                            <label>
+                              <span>Card Number</span>
+                              <input type="text" size="20" class="card-number" data-stripe="number" required/>
+                            </label>
+                          </div>
+
+                          <div class="form-row">
+                            <label>
+                              <span>CVC</span>
+                              <input type="text" size="4" class="card-cvc" data-stripe="cvc" required/>
+                            </label>
+                          </div>
+
+                          <div class="form-row">
+                            <label>
+                              <span>Expiration (MM/YYYY)</span>
+                              <input type="text" size="2" class="card-expiry-month" data-stripe="exp-month" required/>
+                            </label>
+                            <span> / </span>
+                            <input type="text" size="4" class="card-expiry-year" data-stripe="exp-year" required/>
+                          </div>
+                        </div>
+                  </div>
+  <% if false %>            
+              <div class="form-row">
+                <label for="card-element">
+                  Credit or debit card
+                </label>
+                <div id="card-element">
+                  <!-- a Stripe Element will be inserted here. -->
+                </div>
+
+                <!-- Used to display Element errors -->
+                <div id="card-errors"></div>
+              </div>
+  <% end %>
+            </div>
+          </div>
+        </div>
+
+
+
+
+         <% if can? :manage, :all %>
+          <div class="field">
+            <%= f.label :status %>
+            <%= f.select :status, ["Draft", "Active"], selected: status_for(@brand) %>
+          </div>
+          <% else %>
+             <%= f.hidden_field :status, :value => "Draft" %>
+          <% end %>
+
+        <div class="form-group">
+           <%= f.submit "Create Account", class: "btn btn-primary" %>
+          <p>By registering your account, you agree to our Services Agreement and the <a href="https://stripe.com/us/connect-account/legal">Stripe Connected Account Agreement</a>. </p>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script src="https://js.stripe.com/v3/"></script>
+
+<script type="text/javascript">
+  // This identifies your website in the createToken call below
+  Stripe.setPublishableKey("pk_test_4rqQofibwTSjucMC4h9fcvbb");
+  // ...
+</script>
+
+<% if false %>
+<script>
+var stripe = Stripe('pk_test_4rqQofibwTSjucMC4h9fcvbb');
+var elements = stripe.elements();
+
+var style = {
+  base: {
+    color: '#303238',
+    fontSize: '16px',
+    lineHeight: '48px',
+    fontSmoothing: 'antialiased',
+    '::placeholder': {
+      color: '#ccc',
+    },
+  },
+  invalid: {
+    color: '#e5424d',
+    ':focus': {
+      color: '#303238',
+    },
+  },
+};
+var card = elements.create('card', {style: style})
+
+// Add an instance of the card Element into the `card-element` <div>
+card.mount('#card-element');
+
+card.addEventListener('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+
+var form = document.getElementById('new_brand');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      // Inform the user if there was an error
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // Send the token to your server
+      stripeTokenHandler(result.token);
+    }
+  });
+});
+
+function stripeTokenHandler(token) {
+  // Insert the token ID into the form so it gets submitted to the server
+  var form = document.getElementById('new_brand');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
+
+  // Submit the form
+  form.submit();
+}
+</script>
+<% end %>
+
+
+<script>
+    
+    var payout = document.getElementById('selectoption').value;
+    var form = document.getElementById('new_brand');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      console.log(payout);
+
+      if (payout == "1") {
+
+        Stripe.bankAccount.createToken({
+          country: 'US',
+          currency: 'USD',
+          routing_number: $('.routing-number').val(),
+          account_number: $('.account-number').val(),
+          account_holder_name: $('.account_holder_name').val(),
+          account_holder_type: 'individual'
+        }, stripeResponseHandler);   
+
+      } else {
+
+        Stripe.card.createToken({
+          number: $('.card-number').val(),
+          cvc: $('.card-cvc').val(),
+          exp_month: $('.card-expiry-month').val(),
+          exp_year: $('.card-expiry-year').val(),
+          currency: 'USD'
+        }, stripeResponseHandler);   
+
+      }
+
+    });
+
+      function stripeResponseHandler(status, response) {
+        var $form = $('#new_brand');
+        if (response.error) {
+          // Show the errors on the form
+          $form.find('.payment-errors').text(response.error.message);
+          $form.find('button').prop('disabled', false);
+        } else {
+          // response contains id and card, which contains additional card details
+          var token = response.id;
+          // Insert the token into the form so it gets submitted to the server
+          $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+
+          console.log(response);
+          // and submit
+          $form.get(0).submit();
+        }
+      }
+
+
+function displayAccount(answer) {
+
+  if (answer == "1") { // hide the div that is not selected
+    document.getElementById('debitcardinfo').style.display = "none";
+    $('#debitcardinfo :input').attr("disabled",true);
+
+    document.getElementById('bankaccountinfo').style.display = "block";
+    $('#bankaccountinfo :input').attr("disabled",false);
+  } else {
+
+    document.getElementById('debitcardinfo').style.display = "block";
+    $('#debitcardinfo :input').attr("disabled",false);
+    document.getElementById('bankaccountinfo').style.display = "none";
+    $('#bankaccountinfo :input').attr("disabled",true);
+
+  } 
+
+  payout = answer;
+
+}
+
+</script>

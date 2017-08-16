@@ -1,0 +1,25 @@
+// Place all the styles related to the Profiles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.profilesection {float: left; width: 100%; margin: 0; padding: 0; background-color: rgba(255,255,243,1);}
+.profilesection ul {float: left; list-style-type: none; padding: 0; margin: 0; width: 100%;}
+.profilesection ul li {float: left; width: 33%;}
+.profile-topbox1 {float: left; width: 100%; margin: 0; padding: 20px 0;}
+.profilename h1 {float: left; width: 100%; margin: 0; padding: 0 5%; font-weight: 700;}
+
+@media screen and (min-width: 800px) and (max-width: 1200px){
+
+	.profilesection ul li {float: left; width: 33%;}
+
+}
+
+
+
+
+@media screen and (max-width: 800px){
+
+	.profilesection ul li {float: left; width: 33%;}
+
+	}

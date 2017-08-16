@@ -1,0 +1,163 @@
+<li>
+	<div class="postbox <%= post.id %> <%= post.category %>">
+		<%= link_to post_path(post) do %>
+		<div class="imagecircle <%= post.id %>">
+		<div class="postinfo nodisplay <%= post.id %>">
+			<h1><%= post.brand %></h1>
+			<h2><%= post.title %></h2>
+
+
+		</div>
+			<%= image_tag post.image.url(:medium) %>
+
+
+
+
+		</div>
+
+		<% end %>
+
+
+
+		<div class="postbuttons <%= post.id %>">
+
+		<% if post.link.present? %>
+
+		<%= link_to post.link, :target => "_blank" do %>
+			<div class="allbutton linkbutton <%= post.id %>">
+				<i class="fa fa-usd"></i>
+				<p>BUY / <%= post.price %></p>
+
+			</div>
+		<% end %>
+
+		<% else %>
+			<div class="allbutton linkbutton <%= post.id %>">
+				<i class="fa fa-usd"></i>
+				<p>COMING SOON / <%= post.price %></p>
+
+			</div>
+
+		<% end %>
+
+		<% if user_signed_in? %>
+			<% if (@current_user.likes.include? post) %>
+		
+				<div class="allbutton likebutton <%= post.id %>">
+					<i class="fa fa-heart"></i>
+					<p>SHARE / <span class="likeup <%= post.id %>"><%= post.liked_by.count %></span></p>
+
+				</div>
+
+				<% else %>
+
+				<%= link_to like_post_path(post, type: "like"), class: ['likeit', post.id], remote: true, data: { type: :json }, method: :put do %>
+				<div class="allbutton likebutton <%= post.id %>">
+					<i class="fa fa-heart"></i>
+					<p>SHARE / <span class="likeup <%= post.id %>"><%= post.liked_by.count %></span></p>
+
+				</div>
+				<% end %>
+
+				<div class="allbutton unlikebutton nodisplay <%= post.id %>">
+					<i class="fa fa-heart"></i>
+					<p>SHARE / <span class="likeup <%= post.id %>"><%= post.liked_by.count %></span></p>
+
+				</div>
+			<% end %>	
+		<% else %>
+
+			<div class="allbutton likebutton <%= post.id %>">
+				<i class="fa fa-heart"></i>
+				<p>SHARE / <span class="likeup <%= post.id %>"><%= post.liked_by.count %></span></p>
+
+			</div>
+
+
+					
+		<% end %>
+
+		<% if user_signed_in? %>
+			<% if (@current_user.favorites.include? post) %>
+				<%= link_to favorite_post_path(post, type: "unfavorite"), class: ['unfavit', post.id], remote: true, data: { type: :json }, method: :put do %>
+					<div class="allbutton unsavebutton <%= post.id %>">
+						<i class="fa fa-exclamation"></i>
+						<p>UNCAP / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
+
+					</div>
+
+				<% end %>	
+				<%= link_to favorite_post_path(post, type: "favorite"), class: ['favit', post.id], remote: true, data: { type: :json }, method: :put do %>
+				<div class="allbutton savebutton nodisplay <%= post.id %>">
+					<i class="fa fa-exclamation"></i>
+					<p>CAP / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
+
+				</div>
+				<% end %>	
+
+
+			<% else %>
+
+				<%= link_to favorite_post_path(post, type: "favorite"), class: ['favit', post.id], remote: true, data: { type: :json }, method: :put do %>
+				<div class="allbutton savebutton <%= post.id %>">
+					<i class="fa fa-exclamation"></i>
+					<p>CAP / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
+
+				</div>
+				<% end %>	
+
+				<%= link_to favorite_post_path(post, type: "unfavorite"), class: ['unfavit', post.id], remote: true, data: { type: :json }, method: :put do %>
+					<div class="allbutton unsavebutton nodisplay <%= post.id %>">
+						<i class="fa fa-exclamation"></i>
+						<p>UNCAP / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
+
+					</div>
+
+				<% end %>
+			<% end %>
+
+			<% else %>
+
+
+
+			<div class="allbutton savebutton <%= post.id %>">
+				<i class="fa fa-exclamation"></i>
+				<p>CAP / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
+
+			</div>
+
+
+					
+		<% end %>
+		</div>
+
+	</div>
+</li>
+
+<script>
+
+  $('.imagecircle' + '.<%= post.id %>').mouseover(function(){
+    $('.postinfo' + '.<%= post.id %>').removeClass("nodisplay");
+  });
+  $('.imagecircle' + '.<%= post.id %>').mouseleave(function(){
+    $('.postinfo' + '.<%= post.id %>').addClass("nodisplay");
+  });
+  $('.favit' + '.<%= post.id %>').on('ajax:success', function (e, data, status, xhr) { 
+    console.log('byeyo');
+    $('.favup' + '.<%= post.id %>').html(data.count);
+    $('.unsavebutton' + '.<%= post.id %>').removeClass("nodisplay");
+    $('.savebutton' + '.<%= post.id %>').addClass("nodisplay");
+  });
+  $('.unfavit' + '.<%= post.id %>').on('ajax:success', function (e, data, status, xhr) { 
+    console.log('byeyo');
+    $('.favup' + '.<%= post.id %>').html(data.count);
+    $('.unsavebutton' + '.<%= post.id %>').addClass("nodisplay");
+    $('.savebutton' + '.<%= post.id %>').removeClass("nodisplay");
+  });
+  $('.likeit' + '.<%= post.id %>').on('ajax:success', function (e, data, status, xhr) { 
+    console.log('byeyo');
+    $('.likeup' + '.<%= post.id %>').html(data.count);
+    $('.unlikebutton' + '.<%= post.id %>').removeClass("nodisplay");
+    $('.likebutton' + '.<%= post.id %>').addClass("nodisplay");
+  });
+</script>

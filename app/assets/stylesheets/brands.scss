@@ -1,0 +1,31 @@
+// Place all the styles related to the Brands controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.signup-back .panel-body .panel.panel-default form#new_brand.new_brand .form-group input.form-control.birthday {float: left; width: 30px; padding: 0 5px; text-align: center;}
+.signup-back .panel-body .panel.panel-default form#new_brand.new_brand .form-group input.form-control.birthday2 {float: left; width: 60px; padding: 0 5px; text-align: center;}
+.birthday3 {float: left; font-size: 26px; line-height: 40px; padding: 0 5px; font-weight: 300; }
+.brandlabel {float: left; margin: 8px 5px;}
+.signup-back .panel-body .panel.panel-default form#new_brand.new_brand {background-color: #fffff3; width: 60%; margin: 0 20%; padding: 25px 5%; box-shadow: 2px 2px 8px #d3d3d3;}
+.signup-back .panel-body .panel.panel-default form#new_brand.new_brand div#accordion.panel-group div.panel.panel-default {background-color: #fffff3; float: left; width: 100%;}
+.signup-back .panel-body .panel.panel-default form#new_brand.new_brand div#accordion.panel-group div.panel.panel-default .panel-heading{
+    color: #566270;
+    font-family: "proxima-nova",sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: left;
+    text-transform: uppercase;
+    background-color: none !important;
+}
+
+.signup-back .panel-body .panel.panel-default form#new_brand.new_brand div#accordion.panel-group div.panel.panel-default .panel-collapse.collapse.in .form-group .form-control {margin-bottom: 10px;}
+.birthdaybox {float: left; clear: both; width: 100%;}
+.brand-heading {float: left; width: 100%; margin: 15px 0;}
+.brand-form-box {float: left; width: 100%; margin: 15px 0;}
+.brand-heading h1 {float: left; width: 100%; text-align: center; font-family: "proxima-nova", sans-serif; color: #566270; text-transform: uppercase; font-weight: 700; font-size: 48px; }
+.brand-heading p {float: left; width: 60%; margin: 5px 20%; text-align: center; font-family: "proxima-nova", sans-serif; color: #000; font-weight: 300; font-size: 18px; }
+#debitcardinfo .form-row input {background-color: #fff; background-image: none; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset; color: #555; font-size: 14px; height: 34px; line-height: 1.42857; padding: 6px 12px; transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s; width: auto;}
+#bankaccountinfo .form-row input {background-color: #fff; background-image: none; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset; color: #555; font-size: 14px; height: 34px; line-height: 1.42857; padding: 6px 12px; transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s; width: auto;}
+select.externaloption {margin: 0 0 10px 0; background-color: #fff; background-image: none; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset; color: #555; font-size: 14px; height: 34px; line-height: 1.42857; padding: 6px 12px; width: auto;}
+form#new_brand.new_brand .panel-group .panel.panel-default .panel-collapse {margin: 10px 0;}
+form#new_brand.new_brand .form-group input.btn.btn-primary {margin: 10px 0;}

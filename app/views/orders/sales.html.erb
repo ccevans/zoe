@@ -1,0 +1,26 @@
+<div class="center">
+	Your Sales History
+
+</div>
+
+<table class="table table-striped table-bordered">
+	<tr>
+		<th class="center">Image</th>
+		<th class="center">Item</th>
+		<th class="center">Price</th>
+		<th class="center">Customer</th>
+		<th class="center">Date Sold</th>
+	</tr>
+
+	<% @orders.each do |order| %>
+		<tr>
+			<td><%= image_tag order.post.image.url(:thumb) %></td>
+			<td><%= order.post.brand %> <%= order.post.title %></td>
+			<td><% if order.post.price.present? %><%= number_to_currency(order.post.price) %><% end %></td>
+			<td><% if order.buyer.present? %><%= order.buyer.username %><% end %></td>
+			<td><%= order.created_at.strftime("%B %-d, %Y") %></td>
+		</tr>
+	<% end %>
+</table>
+
+

@@ -1,0 +1,69 @@
+  <div class="panel-heading">
+    <h1>Add Address</h1>
+  </div>
+
+<div class="panel-body">
+  <div class="panel panel-default">
+    <%= form_for @address, html: { multipart: true } do |f| %>
+      <% if @address.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+          <ul>
+          <% @address.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if current_user.street_address? %>
+        <div class="current-address">
+          <p>Your current shipping address is:</p>
+          <div><%= current_user.first_name %> <%= current_user.last_name %></div>
+          <div><%= current_user.street_address %> </div>
+          <div><%= current_user.street_address2 %> </div>
+          <div><%= current_user.city %>, <%= current_user.state %> <%= current_user.zipcode %></div>
+          <div><%= current_user.country %></div>
+
+          <p><%= link_to "Use a different address", "#", class: "use-different-address" %></p>
+        </div>
+      <% end %>
+
+      <div class="address-fields">
+        <span class="address-errors"></span>
+
+          <div class="form-group">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, :placeholder => 'First Name', class: "form-control" %>
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, :placeholder => 'Last Name', class: "form-control" %>
+            <%= f.label :street_address %>
+            <%= f.text_field :street_address, :placeholder => 'Street Address', class: "form-control" %>
+            <%= f.text_field :street_address2, :placeholder => 'Apt, Suite, Etc.', class: "form-control" %>
+            <%= f.label :city %>
+            <%= f.text_field :city, :placeholder => 'City', class: "form-control" %>
+
+            <%= f.label :state %>
+            <%= f.select :state, options_for_select(us_states),{}, class: 'form-control' %>
+
+            <%= f.label :zipcode %>
+            <%= f.text_field :zipcode, :placeholder => 'Zip Code', class: "form-control" %>
+
+            <%= f.hidden_field :country %>
+
+          </div>
+        </div>
+      <div class="form-group">
+        <%= f.submit class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+    $('.use-different-address').click(function(){
+      $('.current-address').addClass("nodisplay");
+      $('.address-fields').removeClass('nodisplay');
+    });
+</script>

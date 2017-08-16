@@ -1,0 +1,20 @@
+
+<ul class="users">
+  
+	<% @users.each do |user| %>
+        <% if user.username.present? %>
+	            <li class="maininfo <%= user.id %>">
+                      <%= link_to profile_url(:id => user.username) do %>
+
+                        <%= user.username %></br>
+                        <%= user.email %></br>
+
+                        <%= user.id %>
+
+                      <% end %>
+
+              </li>
+        <% end %>
+  <% end %>
+
+</ul>

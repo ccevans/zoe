@@ -1,0 +1,11 @@
+<div class="postsection">
+<h1>Brands</h1>
+<ul>
+
+<% @brands.each do |b| %>
+	<li><h1><%= link_to b.title, brand_url(:id => b.brandname) %></h1> <p class="branddesc"><%= b.description %></p>  <% if can? :manage, :all %><span> <%= link_to "Edit", edit_brand_path(b) %> | <%= link_to "Destroy", b, method: :delete, data: {confirm: "Are you sure?" } %> </span><% end %> </li>
+<% end %>
+
+
+</ul>
+</div>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Max</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'https://js.stripe.com/v2/', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css" media="all" rel="stylesheet" type="text/css" />
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <meta name="viewport" content="width=device-width" />
+
+
+
+  <script src="https://use.typekit.net/mfr0vxt.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-70989632-5', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+</head>
+<body>
+	    
+    <% if current_page?(new_user_registration_path) || current_page?(edit_user_registration_path) || current_page?(new_user_session_path) || current_page?(user_session_path) %>
+	    <%= render 'layouts/header2' %>
+    <% elsif current_page?(register_path) %>
+      <%= render 'layouts/header3' %>
+    <% else %>
+      <%= render 'layouts/header' %>
+    <% end %>
+
+
+	<div class="notice flash-message"> <span style="background-color: #f1c40f"><%= notice %></span> </div>
+<div class="alert flash-message"> <span style="background-color: #c0392b"><%= alert %></span> </div> 
+
+<%= yield %>
+
+</body>
+</html>
+
+<script>
+  $(function() {
+     $('.flash-message').delay(500).fadeIn('normal', function() {
+        $(this).delay(2500).fadeOut();
+     });
+  });
+  </script>

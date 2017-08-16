@@ -1,0 +1,242 @@
+<div class="header-section">
+	<% if false %>
+	<div class="header-signup <%= subscription_header_class %>">
+		<div id="sitemenu-icon" class="open active">
+			<span class="line1"></span>
+			<span class="line3"></span>
+		</div>
+
+		<%= image_tag 'max-logo2.png', :class => "headerimage2" %>	
+		<h2>Get Capsulely Monthly Hats</h2>
+		<p>Get exclusive releases and member discounts.</p>
+		<%= link_to pages_subscription_path do %>
+			<div class="signupbutton">Hook Me Up</div>
+		<% end %>
+		<div class="nothanks">I'm Good</div>
+
+	</div>
+	<% end %>
+
+	<div class="header-signup <%= subscription_header_class %>">
+		<div id="sitemenu-icon" class="open active">
+			<span class="line1"></span>
+			<span class="line3"></span>
+		</div>
+
+		<%= image_tag 'max-logo2.png', :class => "headerimage2" %>	
+		<p>Get exclusive releases and member discounts.</p>
+		<%= link_to new_user_registration_path do %>
+			<div class="signupbutton">Join The Squad</div>
+		<% end %>
+		<div class="nothanks">I'm Good</div>
+
+	</div>
+
+	<ul class="header-ul">
+		<%= link_to root_path do %>
+		<li class="nav0"><%= image_tag 'max-logo1.png', :class => "headerimage" %></li><% end %>
+		<%= link_to pages_hats_path do %>
+		<li class="nav1">Get Hats</li>
+		<% end %>
+
+		<% if @brands.any? %>
+		<li class="nav2">
+	    <div class="dropdown">
+	      <span class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+	        Brands
+	        <span class="caret"></span>
+	      </span>
+	      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+
+	         <% @brands.each do |brand| %>
+	              <li role="presentation"><%= link_to brand.title, brand_url(:id => brand.brandname) %></li>
+	            <% end %>
+	      </ul>
+	    </div>
+		</li>
+		<% end %>
+		
+		<% if false %>
+		<%= link_to pages_subscription_path do %>
+		<li class="nav2">How It Works</li>
+		<% end %>
+		<% end %>
+
+		<%= link_to pages_about_path do %>
+		<li class="nav3">About</li>
+		<% end %>
+
+		<% if false %>
+		<% if user_signed_in? %>
+		<% if current_user.stripe_id.present? %>
+			<li class="nav4">	
+				Credits: <%= current_user.credits.where(creditactive: true).count %>
+			</li>
+		<% end %>
+		<% end %>
+		<% end %>
+
+
+		<li class="nav5"><div id="openbutton" class="rec-overall"><div class="large-rec"></div><div class="small-rec"></div></div></li>
+	</ul>
+
+</div>
+
+<div class="overlay nodisplay"></div>
+
+	<div class="rightmenu">
+	  <ul>
+	  	<% if user_signed_in? %>
+	  	<li>
+		    
+		    <%= link_to profile_url(:id => current_user.username) do %>
+		    	<span class="menu-li">Digital Cap</span>
+		    <% end %>
+		    
+		</li>
+		<% end %>
+
+		<% if false %>
+		<li>
+			<% if current_user_subscribed? %>
+
+
+				
+			<% else %>
+			<%= link_to "Subscribe To Capsulely", new_subscription_path, data: { no_turbolink: true } %>
+
+			<% end %>
+
+		</li>
+		<% end %>
+		
+		<li>
+			<% if false %>
+			<% if user_signed_in? %>
+			<% if current_user.stripe_id.present? %>
+
+			Credits: <%= current_user.credits.where(creditactive: true).count %>
+
+			<% end %>
+			<% end %>
+			<% end %>
+		</li>
+	  </ul>
+
+	  <ul>
+	
+	  	<%= link_to pages_hats_path do %>
+	  	<li>
+			Get Hats
+		</li>
+		<% end %>
+
+		<% if false %>
+		<%= link_to pages_subscription_path do %>
+	  	<li>
+			How It Works
+		</li>
+		<% end %>
+		<% end %>
+
+		<%= link_to pages_about_path do %>
+	  	<li>
+			About
+		</li>
+		<% end %>
+
+	  </ul>
+
+	  <ul>
+	  	<% if user_signed_in? %>
+	    <li>
+	      <%= link_to edit_user_registration_path do %>
+	      <span class="menu-li">Account</span>
+	      <% end %>
+
+	    </li>
+	    <% if can? :manage, :all %>
+	    <li>
+	      <%= link_to sales_path do %>
+	      <span class="menu-li">Sales History</span>
+	      <% end %>
+
+	    </li>
+	    <li>
+	      <%= link_to purchases_path do %>
+	      <span class="menu-li">Purchase History</span>
+	      <% end %>
+
+	    </li>
+	    <% end %>
+
+
+	    <% else %>
+	    <li>
+	      <%= link_to new_user_registration_path do %>
+	      <span class="menu-li">Sign Up / Sign In</span>
+	      <% end %>
+	    </li>
+	    <% end %>
+
+	    <% if user_signed_in? %>
+	    <li>
+	      <%= link_to destroy_user_session_path, :method => :delete do %>
+	      <span class="menu-li">Sign out</span>
+	      <% end %>
+	    </li>
+	    <% end %>
+	  </ul>
+
+	</div>
+
+<script>
+	$('#openbutton').click(function(){
+		$('.rightmenu').addClass('revealed');
+		$('.overlay').removeClass('nodisplay');
+		$('body').addClass("noscroll");
+	});
+	$('.overlay').click(function(){
+		$('.rightmenu').removeClass('revealed');
+		$('.overlay').addClass('nodisplay');
+		$('body').removeClass("noscroll");
+		$('.signup-popup').addClass("nodisplay");
+		$('.social-popup').addClass("nodisplay");
+	});
+	$("#sitemenu-icon").click(function(){
+		$(".header-signup").addClass("nodisplay");
+		$("#sitemenu-icon").removeClass("open");
+		$("#sitemenu-icon").removeClass("active");
+		$('body').removeClass("noscroll");
+	});
+	$(".nothanks").click(function(){
+		$(".header-signup").addClass("nodisplay");
+		$("#sitemenu-icon").removeClass("open");
+		$("#sitemenu-icon").removeClass("active");
+		$('body').removeClass("noscroll");
+	});
+ 	$('#teebutton').click(function(){
+		$('.Tee').removeClass('nodisplay');
+		$('.Jacket').addClass('nodisplay');
+		$('.Accessory').addClass('nodisplay');
+		$('.Hat').addClass('nodisplay');
+	});
+ 	$('#hatbutton').click(function(){
+		$('.Tee').addClass('nodisplay');
+		$('.Jacket').addClass('nodisplay');
+		$('.Accessory').addClass('nodisplay');
+		$('.Hat').removeClass('nodisplay');
+	});
+ 	$('#jacketbutton').click(function(){
+		$('.Tee').addClass('nodisplay');
+		$('.Jacket').removeClass('nodisplay');
+		$('.Accessory').addClass('nodisplay');
+		$('.Hat').addClass('nodisplay');
+	});
+ 	$('#accessorybutton').click(function(){
+		$('.Tee').addClass('nodisplay');
+		$('.Jacket').addClass('nodisplay');
+		$('.Accessory').removeClass('nodisplay');
+		$('.Hat').addClass('nodisplay');
+	});
+</script>
