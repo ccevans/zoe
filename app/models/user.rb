@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 
   has_many :posts, dependent: :destroy
   has_many :brands, dependent: :destroy
+  has_many :exhibitions, dependent: :destroy
 
     # Favorite recipes of user
   has_many :favorite_posts # just the 'relationships'

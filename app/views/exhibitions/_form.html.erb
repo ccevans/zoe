@@ -1,0 +1,15 @@
+<div class="panel-body">
+  <div class="panel panel-default">
+
+	<%= simple_form_for(@exhibition, html: { multiport: true }) do |f| %>
+
+	      <%= f.error_notification %>
+
+	  <%= f.input :title, label: "Title" %>
+	  <%= f.input :description, label: "Tell us more" %>
+
+	  <%= f.button :submit, "Submit", class: "button" %>
+
+	<% end %>
+	</div>
+</div>

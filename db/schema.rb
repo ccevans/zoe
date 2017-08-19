@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421235450) do
+ActiveRecord::Schema.define(version: 20170819174614) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -91,6 +91,14 @@ ActiveRecord::Schema.define(version: 20170421235450) do
   end
 
   add_index "credits", ["stripe_id"], name: "index_credits_on_stripe_id", unique: true
+
+  create_table "exhibitions", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+  end
 
   create_table "favorite_posts", force: :cascade do |t|
     t.integer  "post_id"

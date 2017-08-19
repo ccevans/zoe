@@ -34,16 +34,16 @@ body {background-color: rgba(255,255,243,1);}
 .alert {margin-bottom: 0px !important; font-size: 18px; color: #fff; z-index: 1000; top: 100px; position: fixed; border-radius: 10px !important; -moz-border-radius: 10px !important; -webkit-border-radius: 10px !important; width: 90%; padding: 0 5% !important; text-align: right;}
 
 .header-section {float: left; width: 100%; margin: 0; padding: 0;}
-.header-signup {float: left; width: 100%; margin: 0; padding: 10px 0; background-color: rgba(165,147,224,1); text-align: center; color: #fff;}
+.header-signup {float: left; width: 100%; margin: 0; padding: 10px 0; background-color: rgba(255,0,156 ,1); text-align: center; color: #fff;}
 .header {float: left; width: 100%; margin: 0; padding: 10px 0; background-color: rgba(165,147,224,1); text-align: center;
  transition: all 1000ms ease 0s;  
     -webkit-transition: all 1000ms ease 0s;  
     -moz-transition: all 1000ms ease 0s;  
     -o-transition: all 1000ms ease 0s;  
     }
-.headerimage {float: left; width: 70%; margin: 0px 15%;}
+.headerimage {float: left; width: 40%; margin: 5px 30%;}
 .headerimage2 {float: left; width: 10%; margin: 10px 45%;}
-.header-ul {float: left; width: 100%; margin: 0; padding: 5px 0; height: auto; list-style-type: none; text-align: center; background-color: rgba(255,255,243,1);}
+.header-ul {float: left; width: 100%; margin: 0; padding: 5px 0; height: auto; list-style-type: none; text-align: center; background-color: rgba(255,255,255,1);}
 .header-ul li {float: left; width: 12%; color: #566270; font-size: 18px; padding: 10px 0; 
  transition: all 300ms ease 0s;  
     -webkit-transition: all 300ms ease 0s;  

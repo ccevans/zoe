@@ -1,0 +1,12 @@
+<% if can? :manage, :all %>
+<div class="signup-back">
+  <div class="panel-heading">
+    <h1>Edit Exhibition</h1>
+  </div>
+
+
+	<%= render 'form' %>
+
+	<%= link_to 'Back', exhibitions_path %>
+</div>
+<% end %>

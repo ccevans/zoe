@@ -43,6 +43,12 @@ Rails.application.routes.draw do
 
   resources :brands
 
+
+  resources :exhibitions do
+      resources :posts
+  
+  end
+
   
 
 end
