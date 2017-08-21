@@ -50,7 +50,7 @@ private
 	end
 
 	def exhibition_params
-		params.require(:exhibition).permit(:title, :description)
+		params.require(:exhibition).permit(:title, :description, :image)
 	end
 
 end

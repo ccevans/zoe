@@ -8,6 +8,11 @@
 	  <%= f.input :title, label: "Title" %>
 	  <%= f.input :description, label: "Tell us more" %>
 
+      <div class="form-group">
+        <%= f.label :image %>
+        <%= f.file_field :image, class: "form-control" %>
+      </div>
+
 	  <%= f.button :submit, "Submit", class: "button" %>
 
 	<% end %>
