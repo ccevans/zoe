@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821151749) do
+ActiveRecord::Schema.define(version: 20170823000058) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -193,6 +193,7 @@ ActiveRecord::Schema.define(version: 20170821151749) do
     t.string   "member_discount",     default: "0"
     t.text     "brand_ids",           default: "--- []\n"
     t.integer  "brand_id"
+    t.integer  "exhibition_id"
   end
 
   create_table "users", force: :cascade do |t|

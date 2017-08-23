@@ -1,5 +1,12 @@
-<li>
-	<h1><%= exhibition.title %></h1>
-	<p><%= exhibition.description %></p>
+<li class="exhibitionlist">
+	<%= link_to exhibition_path(exhibition) do %>
+		<div class="exhibitioncontent">
+			<h1><%= exhibition.title %></h1>
+			<p><%= exhibition.description %></p>
+		</div>
+
+	<% end %>
+
+	<%= image_tag exhibition.image.url(:large), class: "exhibitionimage" %>
 
 </li>

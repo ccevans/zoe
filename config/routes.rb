@@ -17,13 +17,14 @@ Rails.application.routes.draw do
   get 'purchases' => "orders#purchases"
   get 'checking' => "brands#checking"
   get 'register' => "pages#register"
+  get 'artists' => "brands#index"
 
   devise_for :users, :controllers => { :registrations => 'users/registrations', :omniauth_callbacks =>"omniauth_callbacks"}
 
 
   #root "pages#home"
   #root 'pages#home'
-  root 'posts#index'
+  root 'exhibitions#index'
 
   resources :posts do
   	put :favorite, on: :member

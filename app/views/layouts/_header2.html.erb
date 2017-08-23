@@ -26,7 +26,7 @@
 		<%= image_tag 'zoe-logo-white.png', :class => "headerimage2" %>
 		<p>Get exclusive releases and member discounts.</p>
 		<%= link_to new_user_registration_path do %>
-			<div class="signupbutton">Join The Squad</div>
+			<div class="signupbutton">Join The Art Club</div>
 		<% end %>
 		<div class="nothanks">I'm Good</div>
 
@@ -35,8 +35,8 @@
 	<ul class="header-ul">
 		<%= link_to root_path do %>
 		<li class="nav0"><%= image_tag 'zoe-logo.png', :class => "headerimage" %></li><% end %>
-		<%= link_to pages_hats_path do %>
-		<li class="nav1">Get Hats</li>
+		<%= link_to posts_path do %>
+		<li class="nav1">Original Art</li>
 		<% end %>
 		
 		<% if false %>
@@ -73,7 +73,7 @@
 	  	<li>
 		    
 		    <%= link_to profile_url(:id => current_user.username) do %>
-		    	<span class="menu-li">Digital Cap</span>
+		    	<span class="menu-li">Art Gallery</span>
 		    <% end %>
 		    
 		</li>
@@ -107,9 +107,9 @@
 	  </ul>
 
 	  <ul>
-	  	<%= link_to pages_hats_path do %>
+	  	<%= link_to posts_path do %>
 	  	<li>
-			Get Hats
+			Original Art
 		</li>
 		<% end %>
 

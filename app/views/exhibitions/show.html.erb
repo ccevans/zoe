@@ -1,5 +1,21 @@
-<div>
-	<h1><%= @exhibition.title %></h1>
-	<p><%= @exhibition.description %></p>
+<div class="exhibitionlist">
 
+		<div class="exhibitioncontent">
+			<h1><%= @exhibition.title %></h1>
+			<p><%= @exhibition.description %></p>
+		</div>
+
+
+	<%= image_tag @exhibition.image.url(:large), class: "exhibitionimage" %>
+
+</div>
+
+<div class="postsection">
+	<% if @posts.any? %>
+
+	<ul>
+		<%= render @posts %>
+	</ul>
+
+	<% end %>
 </div>

@@ -8,7 +8,12 @@ def index
 end
 
 def show
+		if user_signed_in?
+	      @favorites = current_user.favorites
+	      @likes = current_user.likes
+	    end
 	@brands = Brand.active
+	@posts = @exhibition.posts
 end
 
 def new
