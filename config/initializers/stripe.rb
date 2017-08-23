@@ -8,7 +8,7 @@ Rails.configuration.stripe = {
 
 #Stripe.api_key = Rails.configuration.stripe[:secret_key]
 
-Stripe.api_key = "sk_test_C6C2oaTk4zTn9kLA5NdXBXUv"
+Stripe.api_key = "sk_test_OpttamLiuDjKxwqjCuVfURIX"
 
 # config/initializers/stripe.rb
 #Stripe.api_key = ENV['STRIPE_SECRET'] # e.g. sk_live_1234
