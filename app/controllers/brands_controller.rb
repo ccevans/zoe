@@ -27,9 +27,9 @@ before_action :set_brand, only: [:show, :edit, :update, :destroy]
 
     account = Stripe::Account.create(
       :country => "US", 
-      :managed => true, 
       :email => @brand.email,
       :business_name => @brand.title,
+      :type => 'custom',
       :legal_entity => {
         :type => "individual", 
         :first_name => @brand.first_name, 
@@ -63,7 +63,7 @@ before_action :set_brand, only: [:show, :edit, :update, :destroy]
 
     if @brand.save
 
-      flash[:notice] = "Thanks for registering your brand!  We will contact shortly."
+      flash[:notice] = "Thanks for registering your art account!  We will contact shortly."
 
       UserNotifier.send_account_setup_email(current_user).deliver
 
