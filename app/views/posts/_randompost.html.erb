@@ -82,7 +82,7 @@
 				<%= link_to favorite_post_path(post, type: "unfavorite"), class: ['unfavit', post.id], remote: true, data: { type: :json }, method: :put do %>
 					<div class="allbutton unsavebutton <%= post.id %>">
 						<i class="fa fa-exclamation"></i>
-						<p>UNCAP / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
+						<p>UNSAVE / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
 
 					</div>
 
@@ -90,7 +90,7 @@
 				<%= link_to favorite_post_path(post, type: "favorite"), class: ['favit', post.id], remote: true, data: { type: :json }, method: :put do %>
 				<div class="allbutton savebutton nodisplay <%= post.id %>">
 					<i class="fa fa-exclamation"></i>
-					<p>CAP / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
+					<p>SAVE / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
 
 				</div>
 				<% end %>	
@@ -101,7 +101,7 @@
 				<%= link_to favorite_post_path(post, type: "favorite"), class: ['favit', post.id], remote: true, data: { type: :json }, method: :put do %>
 				<div class="allbutton savebutton <%= post.id %>">
 					<i class="fa fa-exclamation"></i>
-					<p>CAP / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
+					<p>SAVE / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
 
 				</div>
 				<% end %>	
@@ -109,7 +109,7 @@
 				<%= link_to favorite_post_path(post, type: "unfavorite"), class: ['unfavit', post.id], remote: true, data: { type: :json }, method: :put do %>
 					<div class="allbutton unsavebutton nodisplay <%= post.id %>">
 						<i class="fa fa-exclamation"></i>
-						<p>UNCAP / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
+						<p>UNSAVE / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
 
 					</div>
 
@@ -122,7 +122,7 @@
 
 			<div class="allbutton savebutton <%= post.id %>">
 				<i class="fa fa-exclamation"></i>
-				<p>CAP / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
+				<p>SAVE / <span class="favup <%= post.id %>"><%= post.favorited_by.count %></span></p>
 
 			</div>
 
