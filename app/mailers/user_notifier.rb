@@ -5,12 +5,12 @@ class UserNotifier < ApplicationMailer
   def send_signup_email(user)
     @user = user
     mail( :to => @user.email,
-    :subject => 'Thanks for signing up for with Capsulely' )
+    :subject => 'Thanks for signing up for with Zoe' )
   end
 
   def send_account_setup_email(user)
     @user = user
     mail( :to => @user.email,
-    :subject => 'Thanks for registering your brand with Capsulely' )
+    :subject => 'Thanks for registering your art account with Zoe' )
   end
 end
