@@ -38,9 +38,7 @@
 </head>
 <body>
 	    
-    <% if current_page?(new_user_registration_path) || current_page?(edit_user_registration_path) || current_page?(new_user_session_path) || current_page?(user_session_path) %>
-	    <%= render 'layouts/header2' %>
-    <% elsif current_page?(register_path) %>
+    <% if current_page?(register_path) %>
       <%= render 'layouts/header3' %>
     <% else %>
       <%= render 'layouts/header' %>
